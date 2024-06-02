@@ -17,3 +17,18 @@ export const calculateAverageRating = (poops: Poop[]): number => {
     const totalRating = poops.reduce((sum, poop) => sum + poop.rating, 0);
     return totalRating / poops.length;
 };
+
+export const identifyPeakTimes = (poops: Poop[]) => {
+    const hours = new Array(24).fill(0);
+
+    poops.forEach(poop => {
+        const date = new Date(poop.created_at);
+        const hour = date.getHours();
+        hours[hour]++;
+    });
+
+    const maxLogs = Math.max(...hours);
+    const peakHours = hours.map((count, index) => count === maxLogs ? index : -1).filter(hour => hour !== -1);
+
+    return peakHours;
+};
