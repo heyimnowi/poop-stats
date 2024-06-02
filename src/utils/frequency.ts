@@ -1,4 +1,4 @@
-import { Poop } from './models/models';
+import { Poop } from '../models/models';
 
 export const calculateAverageLogs = (poops: Poop[], accountDays: number) => {
     const totalPoops = poops.length;

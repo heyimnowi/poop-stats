@@ -1,8 +1,14 @@
 import { Request, Response } from 'express';
-import { calculateAverageLogs, identifyPeakTimes, calculateLogsOverPeriod } from '../frequency';
+import { calculateAverageLogs, identifyPeakTimes, calculateLogsOverPeriod } from '../utils/frequency';
 import fetchData from '../utils/fetchData';
 import { UserProfile } from '../models/models';
 
+/**
+ * Retrieves user data and calculates average logs.
+ * 
+ * @route GET /api/data
+ * @returns {UserProfile} User data with average logs.
+ */
 export const getData = async (req: Request, res: Response) => {
     try {
         const data: UserProfile | null = await fetchData();
@@ -17,6 +23,12 @@ export const getData = async (req: Request, res: Response) => {
     }
 };
 
+/**
+ * Calculates and returns the average number of logs per day, week, and month.
+ * 
+ * @route GET /api/average-logs
+ * @returns {Object} Average logs per day, week, and month.
+ */
 export const getAverageLogs = async (req: Request, res: Response) => {
     try {
         const data: UserProfile | null = await fetchData();
@@ -31,6 +43,12 @@ export const getAverageLogs = async (req: Request, res: Response) => {
     }
 };
 
+/**
+ * Identifies peak times of day for logging.
+ * 
+ * @route GET /api/peak-times
+ * @returns {Object} Peak times of day for logging.
+ */
 export const getPeakTimes = async (req: Request, res: Response) => {
     try {
         const data: UserProfile | null = await fetchData();
@@ -45,6 +63,14 @@ export const getPeakTimes = async (req: Request, res: Response) => {
     }
 };
 
+/**
+ * Calculates the total number of logs over a specified period.
+ * 
+ * @route GET /api/logs-over-period
+ * @query {string} start - The start date (YYYY-MM-DD).
+ * @query {string} end - The end date (YYYY-MM-DD).
+ * @returns {Object} Total number of logs over the specified period.
+ */
 export const getLogsOverPeriod = async (req: Request, res: Response) => {
     try {
         const { start, end } = req.query;

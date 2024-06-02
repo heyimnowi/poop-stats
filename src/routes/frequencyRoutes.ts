@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getData, getAverageLogs, getPeakTimes, getLogsOverPeriod } from '../controllers/dataController';
+import { getData, getAverageLogs, getPeakTimes, getLogsOverPeriod } from '../controllers/frequencyController';
 
 const router = Router();
 
