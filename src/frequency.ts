@@ -32,3 +32,10 @@ export const identifyPeakTimes = (poops: Poop[]) => {
 
     return peakHours;
 };
+
+export const calculateLogsOverPeriod = (poops: Poop[], startDate: Date, endDate: Date) => {
+    return poops.filter(poop => {
+        const poopDate = new Date(poop.created_at);
+        return poopDate >= startDate && poopDate <= endDate;
+    }).length;
+};
